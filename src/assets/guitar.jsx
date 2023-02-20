@@ -1,12 +1,12 @@
-import { React } from 'react'
+import { React, forwardRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-function Model (props) {
+function Model (props, ref) {
   const { scene } = useGLTF('guitar.glb')
-  return <primitive object={scene} {...props} />
+  return <primitive ref={ref} object={scene} {...props} />
 }
-export default Model
-
+export default forwardRef(Model)
+// export const scene = useGLTF('guitar.glb').scene
 // export default function Model () {
 //   const { nodes } = useGLTF('/guitar.glb')
 
