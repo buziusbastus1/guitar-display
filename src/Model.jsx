@@ -4,21 +4,33 @@ import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Model from './assets/guitar'
+import SectionOne from './SectionOne'
 import './Model.scss'
 extend({ OrbitControls })
+gsap.registerPlugin(ScrollTrigger)
 
-// function Model (props) {
-//   const { scene } = useGLTF('guitar.glb')
-//   return <primitive object={scene} {...props} />
-// }
 function Render () {
   const imgRef = useRef(null)
+  const imgTrig = useRef(null)
+
   useEffect(() => {
     const el = imgRef.current
-    gsap.fromTo(el, { rotation: 90 }, { rotation: 180, duration: 3 })
+    const trigger = imgTrig.current
+    gsap.fromTo(el, { x: 180 }, {
+      y: Math.PI,
+      rotation: 180,
+      duration: 2,
+      scrollTrigger: {
+        trigger: trigger,
+        start: 'top 10%', // start the animation when the trigger is 80% in view
+        end: '+=1000', // end the animation when the canvas has rotated 1000 units
+        scrub: 1
+      }
+    })
   }, [])
 
   return (
+    <div>
   <Canvas ref={imgRef} className="my-canvas" shadows dpr={[1, 2]} camera={{ fov: 45 }} style={{ position: 'fixed' /* position: 'absolute', width: '600px', height: '600px' */ }} >
       <ambientLight />
 {/* <color attach="background" args={['#9EABA4']}/> */}
@@ -27,6 +39,8 @@ function Render () {
     <Model scale={0.91} style={{ }}></Model>
   </Stage>
   </Canvas>
+  <SectionOne ref={imgTrig}/>
+  </div>
   )
 }
 export default Render

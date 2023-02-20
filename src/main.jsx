@@ -3,12 +3,13 @@ import React from 'react'
 import './index.css'
 import Model from './Model'
 import Text from './Text'
-
+import SectionOne from './SectionOne'
 function App () {
   return (
     <div>
-      <Model />
 <Text />
+      <Model />
+ <SectionOne />
     </div>
   )
 }
