@@ -1,54 +1,108 @@
-// // import { React } from 'react'
-// // import { useGLTF } from '@react-three/drei'
 
-// // function Model (props) {
-// //   const { scene } = useGLTF('guitar.glb')
-// //   return <primitive object={scene} {...props} />
-// // }
-// // export default Model
-
-// //   return (
-
-// //       <group rotation={[-Math.PI / 2, 0, 0]}>
-// //         <mesh castShadow geometry={nodes.Object_2.geometry}>
-// //           <meshStandardMaterial color={snap.lid} name="lid" />
-// //         </mesh>
-// //         <mesh castShadow geometry={nodes.Object_3.geometry}>
-// //           <meshStandardMaterial color={snap.base} name="base" />
-// //         </mesh>
-// //       </group>
-// //   )
-// // }
-
-// // useGLTF.preload('./guitar.glb')
 import React, { useRef, useLayoutEffect } from 'react'
 import { useGLTF, useScroll } from '@react-three/drei'
 import gsap from 'gsap'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 
 export function Guitar (props) {
   const { nodes, materials } = useGLTF('./models/guitar.glb')
+  const { camera } = useThree()
   const ref = useRef()
   const tl = useRef()
-
+  const guitar = useRef()
   const scroll = useScroll()
-
+  // const camera = useRef()
+  // camera.position.set(0, 0, 5)
   useFrame(() => {
     tl.current.seek(scroll.offset * tl.current.duration())
+    // console.log(ref.current.position)
+    // console.log(camera.position)
   })
   useLayoutEffect(() => {
+    // console.log(ref.current.position)
+    // console.log(ref.current.rotation)
+    gsap.registerPlugin()
     tl.current = gsap.timeline()
+
     tl.current.to(
       ref.current.position, {
-        duration: 2,
-        y: 2
-      },
-      0
+        // duration: 1,
+        ease: 'power2.inOut',
+        x: 0,
+        y: 4,
+        z: 0
+      }
     )
+      .to(ref.current.rotation, {
+      // duration: 1,
+        ease: 'power2.inOut',
+        y: Math.PI / -2
+      }, 0 // Start w tym samym momencie
+      )
+      .to(
+        ref.current.scale, { // Add this line to animate scale
+          ease: 'power2.inOut',
+          x: 2.3, // Zoom in 2x in the x-axis direction
+          y: 2.3, // Zoom in 2x in the y-axis direction
+          z: 2.3 // Zoom in 2x in the z-axis direction
+        }, 0 // Start w tym samym momencie
+      )
+      .to(
+        camera.position,
+        {
+          x: 0,
+          y: 6,
+          z: 1
+        }
+      )
+
+    // .to(
+    //   ref.current.position, {
+    //     ease: 'power2.inOut',
+    //     x: 2,
+    //     y: 0,
+    //     z: 2,
+    //     duration: 2
+    //   }, '+=2')
+
+    // tl.current.to(
+    //   camera.position, { // new tween for camera position
+    //     duration: 1,
+    //     x: 1,
+    //     y: 1,
+    //     z: -3
+    //   },
+    //   0 // start at the same time as the previous tween
+    // )
+    // tl.current.from(
+    //   camera.position,
+    //   {
+    //     x: 0,
+    //     y: 0,
+    //     z: 4
+    //   },
+    //   0.5
+    // )
+
+    // tl.current.from(
+    //   ref.current.position,
+    //   {
+    //     duration: 0.5,
+    //     y: 2
+    //   },
+    //   1
+    // )
+
+    // tl.current.to(
+    //   ref.current.rotation,
+    //   { scrub: true, x: 0, y: Math.PI / 6, z: 0, markers: true },
+    //   0
+    // )
   }, [])
   return (
-    <group {...props} dispose={null} ref={ref}>
-      <mesh
+    <group {...props} dispose={null} ref={ref}position={[0, 1, 0]} rotation={[Math.PI / 4, 0, 0]} scale={1.5} >
+      <group ref={guitar}>
+        <mesh
         castShadow
         receiveShadow
         geometry={nodes.pickup.geometry}
@@ -64,18 +118,18 @@ export function Guitar (props) {
         castShadow
         receiveShadow
         geometry={nodes.cialo.geometry}
-        material={materials.drewno}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.pret.geometry}
-        material={materials.czarny}
+        material={materials.bialy}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.mos.geometry}
+        material={materials.czarny}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pret.geometry}
         material={materials.czarny}
       />
       <mesh
@@ -93,53 +147,26 @@ export function Guitar (props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.bolec.geometry}
-        material={materials.czarny}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.belec.geometry}
         material={materials.polysk}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.knob.geometry}
-        material={materials.czern}
-        position={[-1.55, 0.06, 0.59]}
-        scale={0.05}
-      />
-      <group position={[-2.35, -0.08, 0.85]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane008.geometry}
-          material={materials.polysk}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane008_1.geometry}
-          material={materials.czarny}
-        />
-      </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.przel.geometry}
+        geometry={nodes.bolec.geometry}
         material={materials.czarny}
-        position={[-1.61, 0.04, 0.75]}
-        scale={0.05}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.klucze.geometry}
+        geometry={nodes.Plane008.geometry}
+        material={materials.polysk}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Plane008_1.geometry}
         material={materials.czarny}
-        position={[2.51, -0.1, 0.36]}
-        rotation={[-0.02, 0.03, -0.19]}
-        scale={0.01}
       />
       <mesh
         castShadow
@@ -150,15 +177,64 @@ export function Guitar (props) {
       <mesh
         castShadow
         receiveShadow
+        geometry={nodes.knob.geometry}
+        material={materials.czern}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.przel.geometry}
+        material={materials.czarny}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.klucze.geometry}
+        material={materials.czarny}
+        rotation={[-0.02, 0.03, -0.19]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.struny002.geometry}
+        material={materials.polysk}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.struny003.geometry}
+        material={materials.polysk}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Sphere.geometry}
+        material={materials.sreb}
+      />
+      <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.drewno.geometry}
         material={materials.drewgryf}
       />
       <mesh
         castShadow
         receiveShadow
+        geometry={nodes.knob002.geometry}
+        material={materials.czern}
+      />
+      <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.frets.geometry}
         material={materials.fret}
-        position={[-0.56, 0.07, 0.2]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.sruby.geometry}
+        material={materials.sreb}
+        rotation={[0.28, 0.47, 1.44]}
       />
       <mesh
         castShadow
@@ -169,75 +245,28 @@ export function Guitar (props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.struny002.geometry}
+        geometry={nodes.struny005.geometry}
         material={materials.polysk}
-        position={[0.14, 0.07, 0.33]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.struny.geometry}
         material={materials.polysk}
-        position={[0.14, 0.07, 0.33]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.sruby.geometry}
-        material={materials.sreb}
-        position={[-2.31, -0.08, 0.91]}
-        rotation={[0.28, 0.47, 1.44]}
-        scale={0.62}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.struny003.geometry}
-        material={materials.polysk}
-        position={[0.14, 0.07, 0.33]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.struny001.geometry}
         material={materials.polysk}
-        position={[0.14, 0.07, 0.33]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Sphere.geometry}
-        material={materials.sreb}
-        position={[-1.61, 0.05, 0.75]}
-        scale={0.02}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.struny005.geometry}
-        material={materials.polysk}
-        position={[0.14, 0.07, 0.33]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.knob002.geometry}
-        material={materials.czern}
-        position={[-1.93, 0.06, 0.82]}
-        scale={0.05}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.struny004.geometry}
         material={materials.polysk}
-        position={[0.14, 0.07, 0.33]}
       />
-      <group
-        position={[-2.48, -0.09, 0.19]}
-        rotation={[-3.14, 0.01, 1.57]}
-        scale={1.03}
-      >
+      <group rotation={[-3.14, 0.01, 1.57]}>
         <mesh
           castShadow
           receiveShadow
@@ -262,6 +291,8 @@ export function Guitar (props) {
           geometry={nodes.Cylinder002_3.geometry}
           material={materials.sreb}
         />
+
+      </group>
       </group>
     </group>
   )
