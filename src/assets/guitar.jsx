@@ -3,7 +3,9 @@ import React, { useRef, useLayoutEffect } from 'react'
 import { useGLTF, useScroll } from '@react-three/drei'
 import gsap from 'gsap'
 import { useFrame, useThree } from '@react-three/fiber'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+// import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
 export function Guitar (props) {
   const { nodes, materials } = useGLTF('./models/guitar.glb')
   // console.log(materials.polysk)
@@ -17,7 +19,7 @@ export function Guitar (props) {
   const pickupMesh2 = useRef()
   // const camera = useRef()
   // camera.position.set(0, 0, 5)
-  gsap.registerPlugin(ScrollTrigger)
+  // gsap.registerPlugin(ScrollTrigger)
 
   useFrame(() => {
     tl.current.seek((scroll.offset) * tl.current.duration())
@@ -34,7 +36,7 @@ export function Guitar (props) {
       ref.current.position, {
 
         ease: 'SlowMo',
-        x: 0,
+        x: 0.5,
         y: 4,
         z: 0
         // duration: 1
@@ -60,7 +62,7 @@ export function Guitar (props) {
       camera.position,
       {
         ease: 'SlowMo',
-        x: 0,
+        x: -0.5,
         y: 6 + scroll.offset,
         z: 0,
         delay: scrollOffset * 2
@@ -110,10 +112,10 @@ export function Guitar (props) {
         {
           ease: 'SlowMo',
 
-          // fov: 30,
-          x: -1,
-          y: 6.3,
-          z: -1.5
+          fov: 40,
+          x: -0.5,
+          y: 6.5,
+          z: -1.1
           // duration: 2
         }, '<'
       )
@@ -121,9 +123,9 @@ export function Guitar (props) {
       ref.current.position, {
 
         ease: 'SlowMo',
-        x: 0,
+        x: 0.4,
         y: 3,
-        z: 1
+        z: 1.5
         // duration: 1
       }
     )
@@ -189,8 +191,8 @@ export function Guitar (props) {
         receiveShadow
         geometry={nodes.sruby.geometry}
         material={materials.sruby}
-         material-metalness={4}
-material-roughness={0.1}
+         material-metalness={3}
+material-roughness={0.4}
       />
         <mesh
         castShadow
