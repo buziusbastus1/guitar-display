@@ -11,6 +11,7 @@ function App () {
   const toggleControlsEnabled = () => {
     setControlsEnabled(!controlsEnabled)
   }
+
   return (
     <>
     <Canvas

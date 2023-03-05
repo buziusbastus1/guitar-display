@@ -12,8 +12,8 @@ export const Experience = ({ controlsEnabled }) => {
        <spotLight intensity={0.6} position={[3, 9, 3]} color={'#bfc0d6'} castShadow/>
        {/* <spotLight intensity={0.9} position={[6, -1, 3]} color={'#bfc0d6'} castShadow/> */}
 
-      <PerspectiveCamera />
-       <ScrollControls pages={8} damping={0.1} /* enabled={controlsEnabled} */ >
+      <PerspectiveCamera /* enabled={controlsEnabled} *//>
+       <ScrollControls pages={8} damping={0.1} distance={5} maxSpeed={1}>
         <Overlay />
 
         <Guitar />

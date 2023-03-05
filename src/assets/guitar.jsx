@@ -7,14 +7,14 @@ import { useFrame, useThree } from '@react-three/fiber'
 // import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export function Guitar (props) {
-  const { nodes, materials } = useGLTF('./models/guitar.glb')
+  const { nodes, materials } = useGLTF('./models/guitarc.glb')
   // console.log(materials.polysk)
   const { camera } = useThree()
   const ref = useRef()
   const tl = useRef()
   const guitar = useRef()
   const scroll = useScroll()
-  const scrollOffset = scroll.offset
+  // const scrollOffset = scroll.offset
   const pickupMesh1 = useRef()
   const pickupMesh2 = useRef()
   // const camera = useRef()
@@ -25,12 +25,13 @@ export function Guitar (props) {
     tl.current.seek((scroll.offset) * tl.current.duration())
     // console.log(ref.current.position)
     // console.log(camera.position)
+    // console.log(camera.rotation)
   })
   useLayoutEffect(() => {
     // console.log(ref.current.position)
     // console.log(ref.current.rotation)
     gsap.registerPlugin()
-    tl.current = gsap.timeline()
+    tl.current = gsap.timeline({ defaults: { duration: 0.20 } })
 
     tl.current.to(
       ref.current.position, {
@@ -39,14 +40,12 @@ export function Guitar (props) {
         x: 0.5,
         y: 4,
         z: 0
-        // duration: 1
       }
     )
       .to(ref.current.rotation, {
       // duration: 2,
         ease: 'SlowMo',
         y: Math.PI / -2
-        // duration: 1
       }, 0 // Start w tym samym momencie
       )
       .to(
@@ -55,7 +54,6 @@ export function Guitar (props) {
           x: 2.3,
           y: 2.3,
           z: 2.3
-          // duration: 2
         }, 0 // Start w tym samym momencie
       )
     tl.current.to(
@@ -64,9 +62,8 @@ export function Guitar (props) {
         ease: 'SlowMo',
         x: -0.5,
         y: 6 + scroll.offset,
-        z: 0,
-        delay: scrollOffset * 2
-        // duration: 1
+        z: 0
+        // delay: scrollOffset * 2
       }
     )
     tl.current.to(
@@ -119,6 +116,7 @@ export function Guitar (props) {
           // duration: 2
         }, '<'
       )
+    // tl.current.pause(1.5)
     tl.current.to(
       ref.current.position, {
 
@@ -129,23 +127,61 @@ export function Guitar (props) {
         // duration: 1
       }
     )
-    // tl.current.duration(400)
-    // tl.current.to(
-    //   camera.fov, {
-    //     fov: 30,
-    //     x: 7,
-    //     y: 7,
-    //     z: 7
-    //   }, '<'
-    // )
-    // tl.current.to(
-    //   camera.rotation,
-    //   {
-    //     x: 0,
-    //     y: -Math.PI / 2,
-    //     z: 0
-    //   }, '<'
-    // )
+
+    tl.current.to(
+      ref.current.position, {
+
+        ease: 'SlowMo',
+        x: 1,
+        y: 10.8,
+        z: -4.5
+        // duration: 10
+      }
+    )
+      .to(
+        camera.rotation,
+        {
+          ease: 'SlowMo',
+
+          x: -Math.PI / 4,
+          y: -Math.PI / 1.7,
+
+          z: -Math.PI / 2
+          // duration: 10
+        }, '<'
+      )
+    tl.current.to(
+      ref.current.position, {
+
+        ease: 'SlowMo',
+        x: 0,
+        y: 1,
+        z: 0
+        // duration: 10
+      }
+    )
+      .to(
+        camera.position,
+        {
+          ease: 'SlowMo',
+
+          x: 0,
+          y: 0,
+          z: 5
+          // duration: 10
+        }, '<'
+      )
+      .to(
+        camera.rotation,
+        {
+          ease: 'SlowMo',
+
+          x: 0,
+          y: 0,
+          z: 0
+          // duration: 10
+        }, '<'
+      )
   }, [])
   return (
     <group {...props} dispose={null} ref={ref}position={[0, 1, 0]} rotation={[Math.PI / 4, 0, 0]} scale={1.5} >
@@ -211,4 +247,4 @@ material-roughness={0.4}
   )
 }
 
-useGLTF.preload('./models/guitar.glb')
+useGLTF.preload('./models/guitarc.glb')
