@@ -65,19 +65,32 @@
 import React, { useState } from 'react'
 import { Scroll, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+import PropTypes from 'prop-types'
 import './Section.scss'
+
 const Section = (props) => {
   const sectionClasses = `section-opacity ${props.right ? 'section-right' : 'section-left'}`
+  const cardClasses = props.isFirstSection ? '' : 'card'
   return (
     <section className={sectionClasses} style={{ opacity: props.opacity }}>
       <div className=" flex items-center justify-center">
         <div className="whole">
-          <div className="card">{props.children}</div>
+          <div className={cardClasses} style={{}}>
+            {props.children}
+          </div>
         </div>
       </div>
     </section>
   )
 }
+
+Section.propTypes = {
+  opacity: PropTypes.number.isRequired,
+  height: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  isFirstSection: PropTypes.bool
+}
+
 export const Overlay = () => {
   const scroll = useScroll()
   const [opacity1tSection, setOpacity1tSection] = useState(1)
@@ -90,21 +103,21 @@ export const Overlay = () => {
   const [opacity8Section, setOpacity8Section] = useState(1)
 
   useFrame(() => {
-    setOpacity1tSection(1 - scroll.curve(1 / 2, 1 / 3))
+    setOpacity1tSection(1 - scroll.curve(0, 1 / 3))
     setOpacity2Section(scroll.curve(0, 1 / 5))
-    setOpacity3Section(scroll.curve(1 / 7, 1 / 3))
-    setOpacity4Section(scroll.curve(2 / 7, 1 / 3))
+    setOpacity3Section(scroll.curve(0, 1 / 3))
+    setOpacity4Section(scroll.curve(1.5 / 7, 1 / 3))
     setOpacity5Section(scroll.curve(3 / 7, 1 / 3))
     setOpacity6Section(scroll.curve(3.8 / 7, 1 / 3))
     setOpacity7Section(scroll.curve(4.5 / 7, 1 / 3))
-    setOpacity8Section(scroll.curve(0, 1 / 3))
+    setOpacity8Section(scroll.curve(6 / 7, 1 / 3))
   })
 
   return (
     <Scroll html>
       <div className="w-screen">
-        <div style={{ display: 'flex', flexDirection: 'initial', justifyContent: 'center' }}>
-        <Section opacity={opacity1tSection} >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Section opacity={opacity1tSection} isFirstSection>
           <h1 className="mid">
             Guitar
           </h1>
@@ -112,14 +125,14 @@ export const Overlay = () => {
           <p >scroll down</p>
           <p className="animate-bounce">↓</p>
           </div>
-        </Section></div>
-
+        </Section>
+        </div>
         <div className="s-screen">
         <Section opacity={opacity2Section}>
           <h1 className="font-semibold font-serif text-2xl">
             Tuners
           </h1>
-          <p className="text-gray-500">The tuners on a guitar are the key to staying in tune, and our high-quality tuners are designed to provide rock-solid stability and precision. Whether you're playing in a stadium or a bedroom, our tuners will ensure that your guitar stays perfectly in tune.
+          <p className="text-gray-500">The tuners on a guitar are the key to staying in tune, and our high-quality tuners are designed to provide rock-solid stability and precision. Whether you &apos;re playing in a stadium or a bedroom, our tuners will ensure that your guitar stays perfectly in tune.
           </p>
 
           <p className="animate-bounce  mt-6">↓</p>
@@ -148,7 +161,7 @@ export const Overlay = () => {
             Bridge
           </h1>
           <p>
-            The bridge of a guitar is the anchor point for the strings, and it plays a crucial role in determining the guitar's tone and sustain. Our expertly crafted bridges are designed to provide maximum resonance and sustain, giving you a rich and dynamic sound.
+            The bridge of a guitar is the anchor point for the strings, and it plays a crucial role in determining the guitar &apos;s tone and sustain. Our expertly crafted bridges are designed to provide maximum resonance and sustain, giving you a rich and dynamic sound.
           </p>
         </Section>
         <Section right opacity={opacity7Section}>
@@ -159,15 +172,13 @@ export const Overlay = () => {
              <button >Click me!</button>
              </>
         </Section>
-        {/* <div className='last'> */}
-         <Section c opacity={opacity8Section}>
-          <h1 className="font-semibold font-serif text-2xl">
-            Bridge
-          </h1>
+        <div style={{ display: 'block', flexDirection: 'initial', justifyContent: 'center' }}>
+         <Section html opacity={opacity8Section}>
           <p>
             8
           </p>
         </Section>
+        </div>
 </div>
 </div>
     </Scroll>

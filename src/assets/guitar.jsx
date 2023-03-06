@@ -24,8 +24,11 @@ export function Guitar (props) {
   useFrame(() => {
     tl.current.seek((scroll.offset) * tl.current.duration())
     // console.log(ref.current.position)
+    // console.log(ref.current.rotation)
+    // console.log(ref.current.scale)
     // console.log(camera.position)
     // console.log(camera.rotation)
+    // console.log(camera.fov)
   })
   useLayoutEffect(() => {
     // console.log(ref.current.position)
@@ -161,13 +164,23 @@ export function Guitar (props) {
       }
     )
       .to(
+        ref.current.rotation, {
+
+          ease: 'SlowMo',
+          x: 0.78,
+          y: 0,
+          z: 0
+        // duration: 10
+        }, '<'
+      )
+      .to(
         camera.position,
         {
           ease: 'SlowMo',
 
           x: 0,
           y: 0,
-          z: 5
+          z: 6
           // duration: 10
         }, '<'
       )
@@ -182,6 +195,18 @@ export function Guitar (props) {
           // duration: 10
         }, '<'
       )
+      .to(
+        ref.current.rotation,
+        {
+          ease: 'SlowMo',
+
+          x: 0,
+          y: 0,
+          z: 0
+          // duration: 10
+        }, '<'
+      )
+    tl.current.pause()
   }, [])
   return (
     <group {...props} dispose={null} ref={ref}position={[0, 1, 0]} rotation={[Math.PI / 4, 0, 0]} scale={1.5} >
