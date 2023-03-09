@@ -158,21 +158,21 @@ export function Guitar (props) {
 
         ease: 'SlowMo',
         x: 0,
-        y: 1,
+        y: 0,
         z: 0
         // duration: 10
       }
     )
-      .to(
-        ref.current.rotation, {
+    // .to(
+    //   ref.current.rotation, {
 
-          ease: 'SlowMo',
-          x: 0.78,
-          y: 0,
-          z: 0
-        // duration: 10
-        }, '<'
-      )
+      //     ease: 'SlowMo',
+      //     x: 0.78,
+      //     y: 0,
+      //     z: 0
+      //   // duration: 10
+      //   }, '<'
+      // )
       .to(
         camera.position,
         {
@@ -180,7 +180,7 @@ export function Guitar (props) {
 
           x: 0,
           y: 0,
-          z: 6
+          z: 5
           // duration: 10
         }, '<'
       )
@@ -200,7 +200,7 @@ export function Guitar (props) {
         {
           ease: 'SlowMo',
 
-          x: 0,
+          x: 0.5,
           y: 0,
           z: 0
           // duration: 10

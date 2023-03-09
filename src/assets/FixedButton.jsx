@@ -1,12 +1,13 @@
 import React from 'react'
-
-export function Button ({ onClick }) {
-  console.log('s')
+export function Button1 ({ onClick, buttonColor }) {
+//   console.log('sa')
   const buttonStyle = {
     position: 'fixed',
     bottom: '20px',
-    right: '20px'
+    right: '20px',
+    backgroundColor: buttonColor,
+    color: 'black'
   }
 
-  return <button style={buttonStyle} onClick={onClick}>Click me!</button>
+  return <button style={buttonStyle} onClick={onClick}>but1</button>
 }

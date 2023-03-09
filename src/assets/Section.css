@@ -1,47 +1,107 @@
-.section {
-  position: relative;
+@charset "UTF-8";
+section {
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.section__inner {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
+.w-screen {
+  width: 100vw;
   justify-content: center;
-  align-items: center;
+}
+
+.section-right {
+  transform: translateX(50%);
+  margin-right: 5%;
+}
+
+.mid {
+  text-align: center;
+}
+
+.down {
+  text-align: center;
+  bottom: 2%;
+  margin-top: 60vh;
 }
 
 .card {
-  max-width: 80%;
-  background-color: white;
-  color: black;
-  border-radius: 10px;
-  padding: 40px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  background-color: #2f3636;
+  border-radius: 10%;
+  border-style: solid;
+  border-color: #2f3636;
+  border-width: thick;
+}
+
+.section-heading {
+  font-weight: 600;
+  font-family: serif;
+  font-size: 2rem;
+}
+
+.section-text {
+  color: #6b7280;
+  margin-top: 1rem;
+}
+
+.section-list {
+  list-style: none;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.section-list li::before {
+  content: "👉 ";
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.last {
+  width: 10%;
+}
+
+/* Styles for the "flex" class */
+.flex {
+  display: flex;
+}
+
+/* Styles for the "items-center" class */
+.items-center {
+  align-items: center;
   text-align: center;
-  opacity: 0.2;
 }
 
-.section__title {
-  margin: 0;
-  font-size: 5rem;
-  font-weight: bold;
+/* Styles for the "justify-center" class */
+.justify-center {
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
-.section__title--first {
-  color: #ff7f50;
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2.4em;
+  }
 }
-
-.section__title--second {
-  color: #00bfff;
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3em;
+  }
 }
-
-.section__title--third {
-  color: #adff2f;
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3.6em;
+  }
 }/*# sourceMappingURL=Section.css.map */

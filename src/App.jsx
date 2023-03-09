@@ -3,7 +3,7 @@ import './App.css'
 import { Experience } from './assets/Experience'
 import { React, useState } from 'react'
 // import { EnableControlsButton } from './assets/Section'
-import { Button } from './assets/FixedButton'
+import { Button1 } from './assets/FixedButton'
 
 function App () {
   const [controlsEnabled, setControlsEnabled] = useState(false)
@@ -22,7 +22,7 @@ function App () {
     >
       <Experience controlsEnabled={controlsEnabled} />
     </Canvas>
- <Button onClick={toggleControlsEnabled}/>
+ <Button1 onClick={toggleControlsEnabled} />
  </>
   )
 }
