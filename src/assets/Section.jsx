@@ -1,72 +1,9 @@
-// import { Scroll, useScroll } from '@react-three/drei'
-// import { useFrame } from '@react-three/fiber'
-// import React, { useState } from 'react'
-// import PropTypes from 'prop-types'
-// import './Section.scss'
-
-// const Section = ({ opacity = 1, scrollPower = 0, height = '100vh', children, ...rest }) => {
-//   const opacityStyle = { opacity }
-//   const scrollStyle = { transform: `translateY(${scrollPower}px)` }
-//   return (
-//     <section className={`section ${rest.sectionClass}`} style={opacityStyle}>
-//       <div className={`section__inner ${rest.innerClass}`} style={{ height, ...scrollStyle }}>
-//         <div className={`card ${rest.cardClass}`}>
-//           <h1 className={`section__title ${rest.titleClass}`}>{children}</h1>
-//         </div>
-//       </div>
-//     </section>
-//   )
-// }
-// Section.propTypes = {
-//   opacity: PropTypes.number.isRequired,
-//   scrollPower: PropTypes.number.isRequired,
-//   height: PropTypes.string,
-//   children: PropTypes.node.isRequired
-// }
-// const Overlay = () => {
-//   const scroll = useScroll()
-//   const [opacity, setOpacity] = useState([1, 1, 1])
-//   const [scrollPower, setScrollPower] = useState([0, 0, 0])
-//   useFrame(() => {
-//     setOpacity(
-//       [1 - scroll.range(0, 1 / 3), scroll.curve(1 / 3, 1 / 3), scroll.range(2 / 3, 1 / 3)
-//       ]
-//     )
-//     setScrollPower(
-//       [scroll.range(0, 100), scroll.range(0, 100), scroll.range(0, -100)
-//       ]
-//     )
-//   })
-//   const handleButtonClick = () => {
-//     // Do something when the button is clicked
-//     console.log('Button clicked!')
-//   }
-//   return (
-//     <>
-//     <Scroll html>
-//       <div style={{ width: '100vw' }}>
-//         {[{ children: 'guitar' },
-//           { height: '90vh', children: '2' },
-//           { height: '90vh', children: '3' },
-//           { height: '90vh', children: '4' },
-//           { height: '90vh', children: '5' },
-//           { height: '90vh', children: '6?' },
-//           { height: '90vh', children: (<>7<button onClick={handleButtonClick}>Click me!</button></>) }
-//         ].map((props, i) => (
-//           <Section key={i} opacity={opacity[i]} scrollPower={scrollPower[i]} {...props} />
-//         ))}
-//       </div>
-//     </Scroll>
-//   </>
-//   )
-// }
-
-// export { Section, Overlay }
 import React, { useState } from 'react'
 import { Scroll, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import PropTypes from 'prop-types'
 import './Section.scss'
+import { useNavigate } from 'react-router-dom'
 // import { Button3 } from './FixedButton'
 
 const Section = (props) => {
@@ -123,6 +60,7 @@ const SectionLast = ({ opacity }) => {
     setIsButtonToggled(!isButtonToggled) // toggle the state of isButtonToggled
     setButtonColor(isButtonToggled ? 'white' : 'red') // update the button color based on the current state of isButtonToggled
   }
+
   return (
     <div style={{ opacity }}>
       <h1 className="mid">Guitar</h1>
@@ -157,6 +95,12 @@ export const Overlay = () => {
     setOpacity8Section(scroll.curve(6 / 7, 1 / 3))
   })
 
+  const navigate = useNavigate()
+
+  function handleClick () {
+    navigate('/path/to/push')
+  }
+
   return (
     <Scroll html>
       <div className="w-screen">
@@ -165,6 +109,7 @@ export const Overlay = () => {
           <h1 className="mid">
             Guitar
           </h1>
+          {/* <Link to="/Home">Go to Destination</Link> */}
           <div className='down'>
           <p>scroll down</p>
           <p className="animate-bounce">↓</p>
@@ -215,8 +160,8 @@ export const Overlay = () => {
         </Section>
         <Section opacity={opacity8Section}>
         {/* <div style={{ display: 'block', flexDirection: 'initial', justifyContent: 'center' }}> */}
+<button onClick={handleClick}>Go to /path/to/push</button>
          <SectionLast html >
-
         </SectionLast>
         </Section>
         {/* </div> */}

@@ -4,8 +4,6 @@ import { useGLTF, useScroll } from '@react-three/drei'
 import gsap from 'gsap'
 import { useFrame, useThree } from '@react-three/fiber'
 
-// import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
 export function Guitar (props) {
   const { nodes, materials } = useGLTF('./models/guitarc.glb')
   // console.log(materials.polysk)
@@ -14,12 +12,10 @@ export function Guitar (props) {
   const tl = useRef()
   const guitar = useRef()
   const scroll = useScroll()
-  // const scrollOffset = scroll.offset
   const pickupMesh1 = useRef()
   const pickupMesh2 = useRef()
   // const camera = useRef()
   // camera.position.set(0, 0, 5)
-  // gsap.registerPlugin(ScrollTrigger)
 
   useFrame(() => {
     tl.current.seek((scroll.offset) * tl.current.duration())
