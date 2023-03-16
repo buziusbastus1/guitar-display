@@ -16,7 +16,7 @@ export const Experience = () => {
       </ScrollControls>
       <PerspectiveCamera />
       <ambientLight intensity={0.5} />
-       <spotLight intensity={1} position={[3, 9, 3]} color={'#bfc0d6'} castShadow/>
+       <spotLight intensity={3} position={[3, 9, 3]} color={'#bfc0d6'} castShadow/>
       <Environment preset="night" />
     </>
   )

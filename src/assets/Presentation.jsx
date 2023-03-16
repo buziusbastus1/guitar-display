@@ -4,9 +4,13 @@ import { PresentationControls, useGLTF, Stage } from '@react-three/drei'
 import { Canvas, useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 // import { TextureLoader } from 'three'
+import { useCustomization } from './Customization'
+
 function Model (props) {
   const { nodes, materials } = useGLTF('./models/guitarfin.glb')
   const location = useLocation() // get the current URL
+
+  const { chairColor } = useCustomization();
 
   // const colorMap = useLoader(TextureLoader, './textures/druga1.webp')
   const colorMap = useLoader(TextureLoader, './textures/drewno.webp')
@@ -20,7 +24,7 @@ function Model (props) {
           geometry={nodes.cialo.geometry}
           material={materials.cialoczer}
         >
-          {/* <meshStandardMaterial map={colorMap} /> */}
+          {/* <meshStandardMaterial map={colorMap} color={chairColor.color} /> */}
     </mesh>
       <mesh
         castShadow
