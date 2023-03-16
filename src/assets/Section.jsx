@@ -4,7 +4,6 @@ import { useFrame } from '@react-three/fiber'
 import PropTypes from 'prop-types'
 import './Section.scss'
 import { useNavigate } from 'react-router-dom'
-// import { Button3 } from './FixedButton'
 
 const Section = (props) => {
   const sectionClasses = `section-opacity ${props.right ? 'section-right' : 'section-left'}`
@@ -13,7 +12,7 @@ const Section = (props) => {
     <section className={sectionClasses} style={{ opacity: props.opacity }}>
       <div className="section-flex">
         <div className="whole">
-          <div className={cardClasses} style={{}}>
+          <div className={cardClasses} >
             {props.children}
           </div>
         </div>
@@ -24,55 +23,11 @@ const Section = (props) => {
 
 Section.propTypes = {
   opacity: PropTypes.number.isRequired,
-  height: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  isFirstSection: PropTypes.bool
+  children: PropTypes.node,
+  isFirstSection: PropTypes.bool,
+  right: PropTypes.bool
 }
 
-const Button3 = ({ onClick, buttonColor }) => {
-  const buttonStyle = {
-    position: 'fixed',
-    bottom: '20px',
-    right: '20px',
-    backgroundColor: buttonColor, // Use buttonColor prop to set background color
-    color: 'black'
-  }
-
-  return (
-    <button style={buttonStyle} onClick={onClick}>
-      butoont3
-    </button>
-  )
-}
-
-const Button2 = ({ onClick, isButtonToggled }) => {
-  return <button onClick={onClick}>{isButtonToggled ? 'Click me again!' : 'Click me!'}</button>
-}
-
-const SectionLast = ({ opacity }) => {
-  const [buttonColor, setButtonColor] = useState('white')
-  const [isButtonToggled, setIsButtonToggled] = useState(false)
-  const handleButtonClick = () => {
-    console.log('Button3 clicked!')
-  }
-
-  const handleToggleButtonClick = () => {
-    setIsButtonToggled(!isButtonToggled) // toggle the state of isButtonToggled
-    setButtonColor(isButtonToggled ? 'white' : 'red') // update the button color based on the current state of isButtonToggled
-  }
-
-  return (
-    <div style={{ opacity }}>
-      <h1 className="mid">Guitar</h1>
-       <Button3 onClick={handleButtonClick} buttonColor={buttonColor} />
-      <div className='down'>
-        <Button2 onClick={handleToggleButtonClick} isButtonToggled={isButtonToggled}/>
-        <p>scroll down</p>
-        <p className="animate-bounce">↓</p>
-      </div>
-    </div>
-  )
-}
 export const Overlay = () => {
   const scroll = useScroll()
   const [opacity1tSection, setOpacity1tSection] = useState(1)
@@ -83,22 +38,48 @@ export const Overlay = () => {
   const [opacity6Section, setOpacity6Section] = useState(1)
   const [opacity7Section, setOpacity7Section] = useState(1)
   const [opacity8Section, setOpacity8Section] = useState(1)
+  const [opacity9Section, setOpacity9Section] = useState(1)
 
   useFrame(() => {
     setOpacity1tSection(1 - scroll.curve(0, 1 / 3))
-    setOpacity2Section(scroll.curve(0, 1 / 3))
-    setOpacity3Section(scroll.curve(0, 1 / 2))
+    setOpacity2Section(scroll.curve(0.2 / 9, 1 / 5))
+    setOpacity3Section(scroll.curve(0.3 / 7, 1 / 3))
     setOpacity4Section(scroll.curve(1.5 / 7, 1 / 3))
-    setOpacity5Section(scroll.curve(2.9 / 7, 1 / 3))
-    setOpacity6Section(scroll.curve(3.9 / 7, 1 / 4))
-    setOpacity7Section(scroll.curve(5 / 7, 1 / 3))
-    setOpacity8Section(scroll.curve(6 / 7, 1 / 3))
+    setOpacity5Section(scroll.curve(2.8 / 7, 1 / 5))
+    setOpacity6Section(scroll.curve(3.5 / 7, 1 / 4))
+    setOpacity7Section(scroll.curve(4 / 7, 1 / 3))
+    setOpacity8Section(scroll.curve(5 / 7, 1 / 3))
+    setOpacity9Section(scroll.curve(7.5 / 9, 1 / 3))
   })
 
   const navigate = useNavigate()
 
   function handleClick () {
-    navigate('/path/to/push')
+    navigate('/presentation')
+  }
+  const SectionLast = ({ opacity }) => {
+    return (
+    <div style={{ opacity }}className='sectlast'>
+      <h1 className="midl">Crimson Caster</h1>
+       <button className='custbut' onClick={handleClick}>Customize</button>
+<footer className="footer">
+
+      <div className="col">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+
+</footer>
+    </div>
+    )
+  }
+
+  SectionLast.propTypes = {
+    opacity: PropTypes.number.isRequired
   }
 
   return (
@@ -107,9 +88,8 @@ export const Overlay = () => {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Section opacity={opacity1tSection} isFirstSection>
           <h1 className="mid">
-            Guitar
+            Crimson Caster
           </h1>
-          {/* <Link to="/Home">Go to Destination</Link> */}
           <div className='down'>
           <p>scroll down</p>
           <p className="animate-bounce">↓</p>
@@ -158,13 +138,15 @@ export const Overlay = () => {
            <p>The neck of a guitar is the backbone of the instrument, providing the support and stability you need to play with precision and accuracy. Our necks are crafted from the finest materials and designed to feel comfortable in your hand, so you can play for hours without fatigue.</p>
              </>
         </Section>
-        <Section opacity={opacity8Section}>
-        {/* <div style={{ display: 'block', flexDirection: 'initial', justifyContent: 'center' }}> */}
-<button onClick={handleClick}>Go to /path/to/push</button>
-         <SectionLast html >
-        </SectionLast>
+        <Section right opacity={opacity8Section}>
+          <>
+          <h1 className="heading">
+            Summary </h1>
+           <p>Each main guitar component plays a critical role in determining the guitar's tone, playability, and overall sound. By choosing high-quality components, you can unlock the full potential of your guitar and take your playing to the next level.</p>
+             </>
         </Section>
-        {/* </div> */}
+         <SectionLast html opacity={opacity9Section}>
+        </SectionLast>
 </div>
 </div>
     </Scroll>
