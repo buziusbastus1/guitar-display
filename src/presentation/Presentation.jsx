@@ -1,19 +1,15 @@
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import { PresentationControls, useGLTF, Stage } from '@react-three/drei'
 import { Canvas, useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 // import { TextureLoader } from 'three'
-import { useCustomization } from './Customization'
+import { material } from './materials'
 
 function Model (props) {
   const { nodes, materials } = useGLTF('./models/guitarfin.glb')
-  const location = useLocation() // get the current URL
-
-  const { chairColor } = useCustomization();
-
-  // const colorMap = useLoader(TextureLoader, './textures/druga1.webp')
-  const colorMap = useLoader(TextureLoader, './textures/drewno.webp')
+  // const [woodColor, setWoodColor] = useState('#8B4513')
+  // const woodColor = '#8B4513'
 
   console.log(location.pathname)
   return (
@@ -22,10 +18,16 @@ function Model (props) {
           castShadow
           receiveShadow
           geometry={nodes.cialo.geometry}
-          material={materials.cialoczer}
+          // material={materials.cialoczer}
+
         >
-          {/* <meshStandardMaterial map={colorMap} color={chairColor.color} /> */}
-    </mesh>
+    <meshStandardMaterial
+      // ...material.red
+  color={props.woodColor}
+   map={materials.cialoczer.map}
+          // scarsMap={materials.cialoczer.scarsMap}
+    />
+</mesh>
       <mesh
         castShadow
         receiveShadow
@@ -97,12 +99,24 @@ function Model (props) {
 useGLTF.preload('./models/guitarfin.glb')
 export const Presentation = (props) => {
   const navigate = useNavigate()
-  const location = useLocation().pathname
+
+  const [woodColor, setWoodColor] = useState('#8B4513')
+
+  const handleColor1 = () => {
+    setWoodColor('#8B4513') // set the wood color to brown
+  }
+
+  const handleColor2 = () => {
+    setWoodColor('#FFD700') // set the wood color to gold
+  }
   return (
     <>
     <div>Home</div>
       <button onClick={() => navigate('/')}>Go back</button>
-          {/* <button onClick={handleClick}>Toggle Texture</button> */}
+       <div>
+        <button onClick={handleColor1}>Brown</button>
+        <button onClick={handleColor2}>Gold</button>
+      </div>
       <Canvas dpr={[1, 2]}>
    <PresentationControls
         speed={1.5}
@@ -111,7 +125,7 @@ export const Presentation = (props) => {
         rotation={[Math.PI / 8, Math.PI / 4, 0]}
       >
         <Stage environment="city" intensity={0.6} castShadow={false}>
-          <Model location={location} />
+          <Model woodColor={woodColor}/>
       </Stage>
       </PresentationControls>
        </Canvas>

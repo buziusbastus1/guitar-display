@@ -4,7 +4,7 @@ import { Experience } from './assets/Experience'
 import { React, useState, useEffect } from 'react'
 // import { EnableControlsButton } from './assets/Section'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Presentation } from './assets/Presentation'
+import { Presentation } from './presentation/Presentation'
 // import Przycisk from './assets/My'
 export function MyCanvas () {
   return (
