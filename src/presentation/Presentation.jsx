@@ -1,15 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import { PresentationControls, useGLTF, Stage } from '@react-three/drei'
-import { Canvas, useLoader } from '@react-three/fiber'
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
-// import { TextureLoader } from 'three'
-import { material } from './materials'
-
+import { Canvas } from '@react-three/fiber'
+import './Presentation.scss'
 function Model (props) {
   const { nodes, materials } = useGLTF('./models/guitarfin.glb')
-  // const [woodColor, setWoodColor] = useState('#8B4513')
-  // const woodColor = '#8B4513'
 
   console.log(location.pathname)
   return (
@@ -19,14 +14,15 @@ function Model (props) {
           receiveShadow
           geometry={nodes.cialo.geometry}
           // material={materials.cialoczer}
-
         >
     <meshStandardMaterial
       // ...material.red
   color={props.woodColor}
-   map={materials.cialoczer.map}
-          // scarsMap={materials.cialoczer.scarsMap}
+  // normalMap={materials.cialoczer.map}
+  map={materials.cialoczer.map}
+// roughnessMap={materials.cialoczer.map}
     />
+
 </mesh>
       <mesh
         castShadow
@@ -100,23 +96,18 @@ useGLTF.preload('./models/guitarfin.glb')
 export const Presentation = (props) => {
   const navigate = useNavigate()
 
-  const [woodColor, setWoodColor] = useState('#8B4513')
+  const [woodColor, setWoodColor] = useState('#ffffff')
 
   const handleColor1 = () => {
-    setWoodColor('#8B4513') // set the wood color to brown
+    setWoodColor('#ffffff')
   }
 
   const handleColor2 = () => {
-    setWoodColor('#FFD700') // set the wood color to gold
+    setWoodColor('#cfcfcf')
   }
   return (
-    <>
-    <div>Home</div>
-      <button onClick={() => navigate('/')}>Go back</button>
-       <div>
-        <button onClick={handleColor1}>Brown</button>
-        <button onClick={handleColor2}>Gold</button>
-      </div>
+    <div className='presentation'>
+
       <Canvas dpr={[1, 2]}>
    <PresentationControls
         speed={1.5}
@@ -129,6 +120,13 @@ export const Presentation = (props) => {
       </Stage>
       </PresentationControls>
        </Canvas>
-      </>
+    <div className='pres'>
+      <h1>Home</h1>
+      <button onClick={() => navigate('/')}>Go back</button>
+       <div>
+        <button onClick={handleColor1}>Default</button>
+        <button onClick={handleColor2}>Dark</button>
+      </div></div>
+      </div>
   )
 }

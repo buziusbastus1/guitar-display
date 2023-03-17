@@ -1,0 +1,22 @@
+.pres {
+      position: fixed;
+  right: 24px;
+  bottom: 25vh;
+  width: 360px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.presentation{
+      width: 100vw;
+  height: 100vh;
+    width: 100vw;
+  height: 100vh;
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+}

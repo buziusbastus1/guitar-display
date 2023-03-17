@@ -1,16 +1,22 @@
 import { Canvas } from '@react-three/fiber'
 import './App.css'
 import { Experience } from './assets/Experience'
-import { React, useState, useEffect } from 'react'
-// import { EnableControlsButton } from './assets/Section'
+import { React } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Presentation } from './presentation/Presentation'
-// import Przycisk from './assets/My'
+
 export function MyCanvas () {
   return (
     <Canvas camera={{ fov: 64 }}>
       <Experience />
     </Canvas>
+  )
+}
+export function MyPresentation () {
+  return (
+    <>
+      <Presentation />
+</>
   )
 }
 
@@ -20,7 +26,7 @@ function App () {
     <Router>
     <Routes>
     <Route path="/" element={<MyCanvas/>}/>
-      <Route path="/presentation" element={<Presentation />}/>
+      <Route path="/presentation" element={<MyPresentation />}/>
 
     </Routes>
     </Router>

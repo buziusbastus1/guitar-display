@@ -61,7 +61,7 @@ export const Overlay = () => {
     return (
     <div style={{ opacity }}className='sectlast'>
       <h1 className="midl">Crimson Caster</h1>
-       <button className='custbut' onClick={handleClick}>Customize</button>
+       <button className='custbut' onClick={handleClick}>Preview Guitar</button>
 <footer className="footer">
 
       <div className="col">
@@ -142,7 +142,7 @@ export const Overlay = () => {
           <>
           <h1 className="heading">
             Summary </h1>
-           <p>Each main guitar component plays a critical role in determining the guitar's tone, playability, and overall sound. By choosing high-quality components, you can unlock the full potential of your guitar and take your playing to the next level.</p>
+           <p>Each main guitar component plays a critical role in determining the guitar&apos;s tone, playability, and overall sound. By choosing high-quality components, you can unlock the full potential of your guitar and take your playing to the next level.</p>
              </>
         </Section>
          <SectionLast html opacity={opacity9Section}>
