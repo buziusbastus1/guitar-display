@@ -1,14 +1,18 @@
 import { useNavigate } from 'react-router-dom'
-import React, { useState } from 'react'
-import { PresentationControls, useGLTF, Stage } from '@react-three/drei'
+import React, { useState, useRef, useEffect } from 'react'
+import { PresentationControls, useGLTF, Stage, OrbitControls, Bounds, useBounds } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import './Presentation.scss'
-function Model (props) {
+import * as THREE from 'three'
+function Model (props, name) {
   const { nodes, materials } = useGLTF('./models/guitarfin.glb')
+
+  const knob1 = useRef()
+  const knob002 = useRef()
 
   console.log(location.pathname)
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} position={[0, 0, 0]} rotation={[0.5, 0, 0]} scale={1.5}>
         <mesh
           castShadow
           receiveShadow
@@ -16,13 +20,11 @@ function Model (props) {
           // material={materials.cialoczer}
         >
     <meshStandardMaterial
-      // ...material.red
   color={props.woodColor}
-  // normalMap={materials.cialoczer.map}
   map={materials.cialoczer.map}
-// roughnessMap={materials.cialoczer.map}
-    />
-
+  // map={texture}
+  // format={1}
+   />
 </mesh>
       <mesh
         castShadow
@@ -30,6 +32,8 @@ function Model (props) {
         geometry={nodes.knob.geometry}
         material={materials.czern}
         position={[-1.57, 0.06, 0.4]}
+        ref={knob1 }
+        name='Curly'
       />
         <mesh
           castShadow
@@ -37,6 +41,8 @@ function Model (props) {
           geometry={nodes.knob002.geometry}
           material={materials.czern}
           position={[-1.96, 0.06, 0.63]}
+          ref={knob002 }
+          name='DNA'
         />
        <mesh
         castShadow
@@ -102,31 +108,48 @@ export const Presentation = (props) => {
     setWoodColor('#ffffff')
   }
 
+  // const handleColor2 = () => {
+  //   setWoodColor('orange')
+  // }
   const handleColor2 = () => {
-    setWoodColor('#cfcfcf')
+    setWoodColor('#a0e697')
   }
+
   return (
     <div className='presentation'>
 
       <Canvas dpr={[1, 2]}>
-   <PresentationControls
+   {/* <PresentationControls
         speed={1.5}
         global
         polar={[-0.1, Math.PI / 4]}
         rotation={[Math.PI / 8, Math.PI / 4, 0]}
-      >
+      > */}
+       <OrbitControls maxDistance={5} minDistance={1.5} minZoom={2} />
         <Stage environment="city" intensity={0.6} castShadow={false}>
-          <Model woodColor={woodColor}/>
+          <Bounds fit clip observe margin={1.2}>
+          <SelectToZoom>
+          <Model woodColor={woodColor} />
+          </SelectToZoom>
+          </Bounds>
       </Stage>
-      </PresentationControls>
+      {/* </PresentationControls> */}
        </Canvas>
     <div className='pres'>
-      <h1>Home</h1>
       <button onClick={() => navigate('/')}>Go back</button>
-       <div>
+       <div className='colorbut'>
         <button onClick={handleColor1}>Default</button>
         <button onClick={handleColor2}>Dark</button>
-      </div></div>
       </div>
+      </div>
+      </div>
+  )
+}
+function SelectToZoom ({ children }) {
+  const api = useBounds()
+  return (
+    <group onClick={(e) => (e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit())} onPointerMissed={(e) => e.button === 0 && api.refresh().fit()}>
+      {children}
+    </group>
   )
 }

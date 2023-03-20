@@ -59,7 +59,7 @@ export function Guitar (props) {
       camera.position,
       {
         ease: 'SlowMo',
-        x: -0.5,
+        x: -0.2,
         y: 6 + scroll.offset,
         z: 0
         // delay: scrollOffset * 2
@@ -267,6 +267,7 @@ export function Guitar (props) {
         receiveShadow
         geometry={nodes.cialo.geometry}
         material={materials.cialoczer}
+        material-roughness={0.8}
       />
       <mesh
         castShadow

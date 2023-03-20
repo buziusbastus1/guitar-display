@@ -85,7 +85,7 @@ export const Overlay = () => {
   return (
     <Scroll html>
       <div className="w-screen">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '-10vh' }}>
         <Section opacity={opacity1tSection} isFirstSection>
           <h1 className="mid">
             Crimson Caster
