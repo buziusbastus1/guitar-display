@@ -206,7 +206,7 @@ export function Guitar (props) {
     tl.current.pause()
   }, [])
   return (
-    <group {...props} dispose={null} ref={ref}position={[0, 1, 0]} rotation={[Math.PI / 4, 0, 0]} scale={1.5} >
+    <group {...props} dispose={null} ref={ref}position={[0, 0.5, 0]} rotation={[Math.PI / 4, 0, 0]} scale={1.5} >
         <mesh
           castShadow
           receiveShadow
