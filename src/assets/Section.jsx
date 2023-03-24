@@ -43,7 +43,7 @@ export const Overlay = () => {
   useFrame(() => {
     setOpacity1tSection(1 - scroll.curve(0, 1 / 3))
     setOpacity2Section(scroll.curve(0.2 / 9, 1 / 5))
-    setOpacity3Section(scroll.curve(0.3 / 7, 1 / 3))
+    setOpacity3Section(scroll.curve(0.2 / 10, 1 / 2))
     setOpacity4Section(scroll.curve(1.5 / 7, 1 / 3))
     setOpacity5Section(scroll.curve(2.8 / 7, 1 / 5))
     setOpacity6Section(scroll.curve(3.5 / 7, 1 / 4))
@@ -67,9 +67,8 @@ export const Overlay = () => {
       <div className="col">
         <h3>Links</h3>
         <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms &amp; Conditions</a></li>
-          <li><a href="#">Cookie Policy</a></li>
+          <li><a target="_blank" href="https://github.com/buziusbastus1" rel="noreferrer">Github</a></li>
+          <li><a target="_blank" href="https://www.linkedin.com/in/jakub-otreba337/" rel="noreferrer">Terms &amp; Conditions</a></li>
         </ul>
       </div>
 

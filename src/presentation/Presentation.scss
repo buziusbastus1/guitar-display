@@ -11,18 +11,20 @@
   user-select: none; 
 }
 .pres {
+  margin-top: 1px;
   width: 30vh;
   position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 5%;
+  right: 1%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   & button{
     font-size:xx-large;
-    background-color: #9290906b;
+    background-color: #656565;
      border: none;
   border-radius: 5px;
   }
@@ -49,9 +51,22 @@
 }
 
 .colorbut button:nth-child(1) {
-  background-color: #8f504777;
+  background-color: #8f5147;
 }
 
 .colorbut button:nth-child(2) {
-  background-color: #56616a9d;
+  background-color: #56616a;
+}
+.collapsible-container {
+  margin-top: 20px;
+}
+
+.collapsible {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+
+  &.open {
+    max-height: 500px;
+  }
 }

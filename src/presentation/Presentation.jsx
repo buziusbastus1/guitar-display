@@ -1,19 +1,12 @@
 import { useNavigate } from 'react-router-dom'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useMemo } from 'react'
 import { useGLTF, Stage, OrbitControls, Bounds, useBounds, Environment } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import './Presentation.scss'
+// import { woodColor, PresentationOverlay } from './PresentationOverlay'
 
-function Model (props, name) {
+function Model ({ woodColor, ...props }) {
   const { nodes, materials } = useGLTF('./models/guitarp.glb')
-
-  // const knob1 = useRef()
-  // const knob002 = useRef()
-
-  // console.log(location.pathname)
-
-  // const [hovered, setHovered] = useState(false)
-  // useCursor(hovered, 'pointer', 'auto')
 
   const state = ({
     current: null,
@@ -25,9 +18,7 @@ function Model (props, name) {
       fretboard: 'fretboard',
       pickups: 'pickups',
       body: 'body'
-
     }
-
   })
 
   const [hovered, set] = useState(null)
@@ -39,7 +30,6 @@ function Model (props, name) {
     <text fill="white" style="white-space:pre" font-family="Inter var, sans-serif" font-size="20" letter-spacing="-.01em">
     <tspan x="35" y="63">${hovered}</tspan>
     </text>
-
     </svg>`
     const auto = '<svg width="120" height="64" ></svg>'
     if (hovered) {
@@ -59,8 +49,9 @@ function Model (props, name) {
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
         >
+
     <meshStandardMaterial
-  color={props.woodColor}
+  color={woodColor}
   map={materials.cialoczer.map}
    />
 </mesh>
@@ -191,7 +182,8 @@ function Model (props, name) {
   )
 }
 useGLTF.preload('./models/guitarp.glb')
-export const Presentation = (props) => {
+
+export const Presentation = () => {
   const navigate = useNavigate()
 
   const [woodColor, setWoodColor] = useState('#ffffff')
@@ -200,36 +192,50 @@ export const Presentation = (props) => {
     setWoodColor('#ffffff')
   }
   const handleColor2 = () => {
-    setWoodColor('#a0e697')
+    setWoodColor('#bababa')
+  }
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed)
+    setIsHidden(!isHidden)
   }
 
   return (
-    <div className='presentation'>
+  <div className='presentation'>
 
       <Canvas dpr={[1, 2]} camera={{ position: [0, 20, 20] }}>
 
           <ambientLight intensity={0.5} />
           <hemisphereLight color="#5c4f2d" position={[0, 0, 13]} intensity={1} />
-        {/* <Stage environment="city" intensity={0.6} castShadow={false}> */}
-          <Bounds fit observe margin={1.5} damping={4}>
+          <Bounds fit margin={1.5} damping={2}>
           <SelectToZoom>
           <Model woodColor={woodColor} />
           </SelectToZoom>
           </Bounds>
-      {/* </Stage> */}
        <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2.5} maxDistance={2.5} minDistance={0.3}/>
  <Environment preset="city" />
        </Canvas>
+
     <div className='pres'>
+   <button style={{ }} onClick={handleCollapse}>
+    {isHidden ? 'Show' : 'Hide'}
+    </button>
+        {!isCollapsed && (
+          <>
       <button onClick={() => navigate('/')}>Go back</button>
        <div className='colorbut'>
         <button onClick={handleColor1}>Default</button>
         <button onClick={handleColor2}>Dark</button>
+        </div>
+        </>
+        )}
+        </div>
       </div>
-      </div>
-      </div>
+
   )
 }
+
 function SelectToZoom ({ children }) {
   const api = useBounds()
   return (
