@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
-import React, { useState, useRef, useEffect, useMemo } from 'react'
-import { useGLTF, Stage, OrbitControls, Bounds, useBounds, Environment } from '@react-three/drei'
+import React, { useState, useEffect } from 'react'
+import { useGLTF, OrbitControls, Bounds, Environment } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { SelectToZoom } from './SelectToZoom'
+// import PresContent from './PresContent'
+
 import './Presentation.scss'
-// import { woodColor, PresentationOverlay } from './PresentationOverlay'
 
 function Model ({ woodColor, ...props }) {
   const { nodes, materials } = useGLTF('./models/guitarp.glb')
@@ -183,64 +185,18 @@ function Model ({ woodColor, ...props }) {
 }
 useGLTF.preload('./models/guitarp.glb')
 
-export const Presentation = () => {
-  const navigate = useNavigate()
-
-  const [woodColor, setWoodColor] = useState('#ffffff')
-
-  const handleColor1 = () => {
-    setWoodColor('#ffffff')
-  }
-  const handleColor2 = () => {
-    setWoodColor('#bababa')
-  }
-  const [isCollapsed, setIsCollapsed] = useState(false)
-  const [isHidden, setIsHidden] = useState(false)
-  const handleCollapse = () => {
-    setIsCollapsed(!isCollapsed)
-    setIsHidden(!isHidden)
-  }
-
+export const CanvasContent = ({ woodColor }) => {
   return (
-  <div className='presentation'>
-
-      <Canvas dpr={[1, 2]} camera={{ position: [0, 20, 20] }}>
-
-          <ambientLight intensity={0.5} />
-          <hemisphereLight color="#5c4f2d" position={[0, 0, 13]} intensity={1} />
-          <Bounds fit margin={1.5} damping={2}>
-          <SelectToZoom>
+    <>
+      <ambientLight intensity={0.5} />
+      <hemisphereLight color="#5c4f2d" position={[0, 0, 13]} intensity={1} />
+      <Bounds fit margin={1.5} damping={5}>
+        <SelectToZoom>
           <Model woodColor={woodColor} />
-          </SelectToZoom>
-          </Bounds>
-       <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2.5} maxDistance={2.5} minDistance={0.3}/>
- <Environment preset="city" />
-       </Canvas>
-
-    <div className='pres'>
-   <button style={{ }} onClick={handleCollapse}>
-    {isHidden ? 'Show' : 'Hide'}
-    </button>
-        {!isCollapsed && (
-          <>
-      <button onClick={() => navigate('/')}>Go back</button>
-       <div className='colorbut'>
-        <button onClick={handleColor1}>Default</button>
-        <button onClick={handleColor2}>Dark</button>
-        </div>
-        </>
-        )}
-        </div>
-      </div>
-
-  )
-}
-
-function SelectToZoom ({ children }) {
-  const api = useBounds()
-  return (
-    <group onClick={(e) => (e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit())} onPointerMissed={(e) => e.button === 0 && api.refresh().fit()}>
-      {children}
-    </group>
+        </SelectToZoom>
+      </Bounds>
+      <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2.5} maxDistance={2.5} minDistance={0.3}/>
+      <Environment preset="city" />
+      </>
   )
 }
