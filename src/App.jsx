@@ -5,14 +5,14 @@ import { React, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import { CanvasContent } from './presentation/Presentation'
 import PresContent from './presentation/PresContent'
-export function MyCanvas () {
+function MyCanvas () {
   return (
     <Canvas camera={{ fov: 64 }}>
       <Experience />
     </Canvas>
   )
 }
-export function MyPresentation () {
+function MyPresentation () {
   const navigate = useNavigate()
 
   const [woodColor, setWoodColor] = useState('#ffffff')

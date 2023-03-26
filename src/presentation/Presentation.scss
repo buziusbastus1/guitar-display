@@ -20,23 +20,22 @@
   }
 } 
 .menu{
-  background-color: #303232d9;
+  background-color: #303232f6;
   border-radius: 10px;
   padding: 12px;
 }
 .back {
   display: inline-block;
   position: relative;
-  padding: 3% 5%;
+  padding: 3% 10%;
   background-color: #000000;
   color: #fff; 
-  font-size: 26px;
   border: none; 
   cursor: pointer; 
-  margin: 2vh auto;
+  margin: 4vh auto;
   border-radius: 5px;
-
-
+  text-align: center;
+  
 }
 .var {
     font-size: 24px;
@@ -46,7 +45,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-
+ margin: 5vh auto 4vh;
   button {
     width: 45%;
     padding: 3%;
@@ -74,7 +73,7 @@
   .colorbut button {
     font-size: 14px;
   }
-  .back {
+  .back{
     font-size: 14px;
   }
 }
@@ -85,14 +84,16 @@
   }
   
   .var {
-    font-size: 24px;
+    font-size: 22px;
   }
   
   .colorbut button {
-    font-size: 24px;
+    font-size: 22px;
+  }
+  .back {
+    font-size: 22px;
   }
 }
-
 @media (min-width: 1024px) {
   .pres {
     width: 35%;
@@ -102,6 +103,9 @@
     font-size: 26px;
   }
   .colorbut button {
+    font-size: 26px;
+  }
+  .back {
     font-size: 26px;
   }
 }
