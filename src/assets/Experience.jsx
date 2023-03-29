@@ -1,6 +1,6 @@
 
-import { ScrollControls, PerspectiveCamera, Environment } from '@react-three/drei'
 import { React } from 'react'
+import { ScrollControls, PerspectiveCamera, Environment } from '@react-three/drei'
 import { Guitar } from './Guitar'
 import { Overlay } from './Section'
 

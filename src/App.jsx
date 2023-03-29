@@ -1,16 +1,20 @@
-import { Canvas } from '@react-three/fiber'
-import './App.css'
-import { Experience } from './assets/Experience'
 import { React, useState } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { Loader } from '@react-three/drei'
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { Experience } from './assets/Experience'
 import { CanvasContent } from './presentation/Presentation'
 import PresContent from './presentation/PresContent'
+import './App.css'
 
 function MyCanvas () {
   return (
+    <>
     <Canvas camera={{ fov: 64 }}>
       <Experience />
     </Canvas>
+    <Loader />
+    </>
   )
 }
 
@@ -38,6 +42,7 @@ function MyPresentation () {
      <CanvasContent woodColor={woodColor} />
      </Canvas>
       <PresContent navigate={navigate} handleCollapse={handleCollapse} isHidden={isHidden} isCollapsed={isCollapsed} handleColor1={handleColor1} handleColor2={handleColor2} />
+      <Loader />
 </>
   )
 }

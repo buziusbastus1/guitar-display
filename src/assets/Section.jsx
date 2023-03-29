@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Scroll, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import './Section.scss'
-import { useNavigate } from 'react-router-dom'
 
 const Section = (props) => {
   const sectionClasses = `section-opacity ${props.right ? 'section-right' : 'section-left'}`
