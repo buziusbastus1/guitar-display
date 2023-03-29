@@ -1,7 +1,5 @@
-import { useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { useGLTF, OrbitControls, Bounds, Environment } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
 import { SelectToZoom } from './SelectToZoom'
 // import PresContent from './PresContent'
 
@@ -26,20 +24,35 @@ function Model ({ woodColor, ...props }) {
   const [hovered, set] = useState(null)
 
   useEffect(() => {
-    const cursor = `<svg width="120" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    const textElement = document.createElement('div')
+    textElement.style.cssText = `
+    position: fixed;
+    font-family: Inter var, sans-serif;
+    font-size: 20px;
+    color: white;
+    pointer-events: none;
+  `
 
-    <path d="M2 2l11 2.947L4.947 13 2 2z" fill="white"/>
-    <text fill="white" style="white-space:pre" font-family="Inter var, sans-serif" font-size="20" letter-spacing="-.01em">
-    <tspan x="35" y="63">${hovered}</tspan>
-    </text>
-    </svg>`
-    const auto = '<svg width="120" height="64" ></svg>'
+    const handleMove = (event) => {
+      const { clientX, clientY } = event.touches ? event.touches[0] : event
+      const x = clientX + 30
+      const y = clientY + 30
+      textElement.style.top = `${y}px`
+      textElement.style.left = `${x}px`
+    }
+
     if (hovered) {
-      document.body.style.cursor = `url('data:image/svg+xml;base64,${btoa(cursor)}'), auto`
-      return () => (document.body.style.cursor = `url('data:image/svg+xml;base64,${btoa(auto)}'), auto`)
+      textElement.textContent = hovered
+      document.body.appendChild(textElement)
+      document.addEventListener('mousemove', handleMove)
+      document.addEventListener('touchmove', handleMove, { passive: true })
+      return () => {
+        document.body.removeChild(textElement)
+        document.removeEventListener('mousemove', handleMove)
+        document.removeEventListener('touchmove', handleMove)
+      }
     }
   }, [hovered])
-
   return (
     <group {...props} dispose={null} position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1} >
         <mesh
@@ -47,7 +60,10 @@ function Model ({ woodColor, ...props }) {
           receiveShadow
           geometry={nodes.cialo.geometry}
         // onClick={(e) => e.stopPropagation()}
- onPointerOver={(e) => (e.stopPropagation(), set(state.items.body))}
+ onPointerOver={(e) => {
+   e.stopPropagation()
+   set(state.items.body)
+ }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
         >
@@ -63,7 +79,10 @@ function Model ({ woodColor, ...props }) {
         geometry={nodes.knob.geometry}
         material={materials.czern}
         position={[-1.57, 0.06, 0.4]}
-        onPointerOver={(e) => (e.stopPropagation(), set(state.items.knob))}
+        onPointerOver={(e) => {
+          e.stopPropagation()
+          set(state.items.knob)
+        }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
       />
@@ -73,7 +92,10 @@ function Model ({ woodColor, ...props }) {
           geometry={nodes.knob002.geometry}
           material={materials.czern}
           position={[-1.96, 0.06, 0.63]}
-          onPointerOver={(e) => (e.stopPropagation(), set(state.items.knob))}
+          onPointerOver={(e) => {
+            e.stopPropagation()
+            set(state.items.knob)
+          }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
         />
@@ -82,7 +104,10 @@ function Model ({ woodColor, ...props }) {
         receiveShadow
         geometry={nodes.drewno001.geometry}
         material={materials.deska}
-         onPointerOver={(e) => (e.stopPropagation(), set(state.items.fretboard))}
+         onPointerOver={(e) => {
+           e.stopPropagation()
+           set(state.items.fretboard)
+         }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
         //  material-metalness={3}
@@ -93,7 +118,10 @@ function Model ({ woodColor, ...props }) {
         receiveShadow
         geometry={nodes.prog.geometry}
         material={materials.prog}
-        onPointerOver={(e) => (e.stopPropagation(), set(state.items.fretboard))}
+        onPointerOver={(e) => {
+          e.stopPropagation()
+          set(state.items.fretboard)
+        }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
       />
@@ -102,6 +130,8 @@ function Model ({ woodColor, ...props }) {
         receiveShadow
         geometry={nodes.sruby.geometry}
         material={materials.sruby}
+           material-roughness={0.4}
+           material-metalness={1.4}
         onClick={(e) => e.stopPropagation()}
 
       />
@@ -118,7 +148,10 @@ function Model ({ woodColor, ...props }) {
         geometry={nodes.pickup.geometry}
         material={materials.pickup}
         position={[-1.17, 0.08, 0.02]}
-           onPointerOver={(e) => (e.stopPropagation(), set(state.items.pickups))}
+           onPointerOver={(e) => {
+             e.stopPropagation()
+             set(state.items.pickups)
+           }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
       />
@@ -149,7 +182,10 @@ function Model ({ woodColor, ...props }) {
         receiveShadow
         geometry={nodes.keys.geometry}
         material={materials.czarny}
-        onPointerOver={(e) => (e.stopPropagation(), set(state.items.keys))}
+        onPointerOver={(e) => {
+          e.stopPropagation()
+          set(state.items.keys)
+        }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
       />
@@ -158,7 +194,10 @@ function Model ({ woodColor, ...props }) {
         receiveShadow
         geometry={nodes.Cube005_1.geometry}
         material={materials.prog}
-        onPointerOver={(e) => (e.stopPropagation(), set(state.items.switch))}
+        onPointerOver={(e) => {
+          e.stopPropagation()
+          set(state.items.switch)
+        }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
       />
@@ -167,7 +206,10 @@ function Model ({ woodColor, ...props }) {
         receiveShadow
         geometry={nodes.Cube005.geometry}
         material={materials.czarny}
-        onPointerOver={(e) => (e.stopPropagation(), set(state.items.switch))}
+        onPointerOver={(e) => {
+          e.stopPropagation()
+          set(state.items.switch)
+        }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
       />
@@ -176,7 +218,10 @@ function Model ({ woodColor, ...props }) {
         receiveShadow
         geometry={nodes.bridge.geometry}
         material={materials.czarny}
-         onPointerOver={(e) => (e.stopPropagation(), set(state.items.bridge))}
+         onPointerOver={(e) => {
+           e.stopPropagation()
+           set(state.items.bridge)
+         }}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
       />
@@ -190,6 +235,7 @@ export const CanvasContent = ({ woodColor }) => {
     <>
       <ambientLight intensity={0.5} />
       <hemisphereLight color="#5c4f2d" position={[0, 0, 13]} intensity={1} />
+       <spotLight intensity={1} position={[-2, 1, 2]} />
       <Bounds fit margin={1.5} damping={5}>
         <SelectToZoom>
           <Model woodColor={woodColor} />

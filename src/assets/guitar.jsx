@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { useFrame, useThree } from '@react-three/fiber'
 
 export function Guitar (props) {
-  const { nodes, materials } = useGLTF('./models/guitarfin.glb')
+  const { nodes, materials } = useGLTF('./models/guitarp.glb')
   // console.log(materials.polysk)
   const { camera } = useThree()
   const tl = useRef()
@@ -223,15 +223,31 @@ export function Guitar (props) {
              position={[-1.96, 0.06, 0.63]}
              ref={pickupMesh2}
            />
-        <mesh
+               <mesh
         castShadow
         receiveShadow
-        geometry={nodes.deska.geometry}
-        material={materials.deska}
-        //  material-metalness={3}
-        // material-roughness={0.4}
+        geometry={nodes.cialo.geometry}
+        material={materials.cialoczer}
+        material-roughness={0.8}
       />
-        <mesh
+            <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.drewno001.geometry}
+        material={materials.deska}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.czesci.geometry}
+        material={materials.czarny}
+      />
+        <mesh castShadow
+        receiveShadow
+        geometry={nodes.cialo.geometry}
+        material={materials.cialoczer}
+      />
+      <mesh
         castShadow
         receiveShadow
         geometry={nodes.prog.geometry}
@@ -240,8 +256,8 @@ export function Guitar (props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.sruby.geometry}
-        material={materials.sruby}
+        geometry={nodes.metal.geometry}
+        material={materials.prog}
       />
       <mesh
         castShadow
@@ -253,27 +269,41 @@ export function Guitar (props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.pickup.geometry}
-        material={materials.pickup}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.czesci.geometry}
+        geometry={nodes.Cube005.geometry}
         material={materials.czarny}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.cialo.geometry}
-        material={materials.cialoczer}
-        material-roughness={0.8}
+        geometry={nodes.Cube005_1.geometry}
+        material={materials.prog}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.metal.geometry}
-        material={materials.prog}
+        geometry={nodes.sruby.geometry}
+        material={materials.sruby}
+         material-metalness={2}
+         material-roughness={0.4}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pickup.geometry}
+        material={materials.pickup}
+        position={[-1.17, 0.08, 0.02]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.keys.geometry}
+        material={materials.czarny}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bridge.geometry}
+        material={materials.czarny}
       />
       <mesh
         castShadow
@@ -285,4 +315,4 @@ export function Guitar (props) {
   )
 }
 
-useGLTF.preload('./models/guitarfin.glb')
+useGLTF.preload('./models/guitarp.glb')

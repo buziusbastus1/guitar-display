@@ -2,9 +2,10 @@ import { Canvas } from '@react-three/fiber'
 import './App.css'
 import { Experience } from './assets/Experience'
 import { React, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { CanvasContent } from './presentation/Presentation'
 import PresContent from './presentation/PresContent'
+
 function MyCanvas () {
   return (
     <Canvas camera={{ fov: 64 }}>
@@ -12,6 +13,7 @@ function MyCanvas () {
     </Canvas>
   )
 }
+
 function MyPresentation () {
   const navigate = useNavigate()
 
@@ -29,29 +31,26 @@ function MyPresentation () {
     setIsCollapsed(!isCollapsed)
     setIsHidden(!isHidden)
   }
+
   return (
     <>
     <Canvas dpr={[1, 2]} camera={{ position: [0, 20, 20] }}>
      <CanvasContent woodColor={woodColor} />
      </Canvas>
       <PresContent navigate={navigate} handleCollapse={handleCollapse} isHidden={isHidden} isCollapsed={isCollapsed} handleColor1={handleColor1} handleColor2={handleColor2} />
-      {/* <Presentation /> */}
 </>
   )
 }
 
 function App () {
   return (
-    <>
-    <Router>
+    <BrowserRouter>
     <Routes>
     <Route path="/" element={<MyCanvas/>}/>
       <Route path="/presentation" element={<MyPresentation />}/>
-
     </Routes>
-    </Router>
+    </BrowserRouter>
 
- </>
   )
 }
 

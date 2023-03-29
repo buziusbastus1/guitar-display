@@ -7,55 +7,58 @@
   display: flex;
   flex-direction: column;
   gap: 5vh;
-  
-  & .toggle{
-  background-color: #656565;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  width: 50%;
-  margin: 0 auto;
-  cursor: pointer;
-  padding: 3%;
+
+  & .toggle {
+    background-color: #656565;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    // width: 50%;
+    margin: 0 auto;
+    cursor: pointer;
+    // padding: 3%;
+    padding: 2vh;
   }
-} 
-.menu{
+}
+
+.menu {
   background-color: #303232f6;
   border-radius: 10px;
   padding: 12px;
 }
+
 .back {
   display: inline-block;
   position: relative;
-  padding: 3% 10%;
+  padding: 2vh;
   background-color: #000000;
-  color: #fff; 
-  border: none; 
-  cursor: pointer; 
-  margin: 4vh auto;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 3vh auto;
   border-radius: 5px;
   text-align: center;
-  
 }
+
 .var {
-    font-size: 24px;
-  }
+  font-size: 24px;
+}
+
 .colorbut {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
- margin: 5vh auto 4vh;
+  margin: 5vh auto 4vh;
+
   button {
     width: 45%;
-    padding: 3%;
+    padding: 2vh;
     text-align: center;
     border: none;
     border-radius: 5px;
     color: #fff;
-    font-weight: bold;
     cursor: pointer;
-    font-size: 18px;
   }
 }
 
@@ -66,50 +69,61 @@
     right: 2%;
   }
 
-   .var {
-     font-size: 14px;
+  .var {
+    font-size: 14px;
   }
 
   .colorbut button {
     font-size: 14px;
   }
-  .back{
+
+  .back {
     font-size: 14px;
+    padding: 2vh 3vh;
   }
 }
+
 @media (min-width: 768px) {
   .pres {
     width: 40%;
     right: 2%;
   }
-  
+
   .var {
-    font-size: 22px;
+    font-size: 16px;
   }
-  
+
   .colorbut button {
-    font-size: 22px;
+    font-size: 16px;
   }
+
   .back {
-    font-size: 22px;
+    font-size: 16px;
+    padding: 2vh 6vh;
   }
 }
+
 @media (min-width: 1024px) {
   .pres {
     width: 35%;
     right: 1%;
   }
+
   .var {
-    font-size: 26px;
+    font-size: 20px;
   }
+
   .colorbut button {
-    font-size: 26px;
+    font-size: 20px;
   }
+
   .back {
-    font-size: 26px;
+    font-size: 20px;
+    padding: 2vh 8vh;
   }
 }
-  .colorbut button:nth-child(1),
-  .colorbut button:nth-child(2) {
-    background-color: #000000;
-  }
+
+.colorbut button:nth-child(1),
+.colorbut button:nth-child(2) {
+  background-color: #000000;
+}

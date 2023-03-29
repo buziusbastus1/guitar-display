@@ -7,13 +7,13 @@ import { Overlay } from './Section'
 export const Experience = () => {
   return (
     <>
-
        <ScrollControls pages={9} damping={0.1} distance={5} maxSpeed={0.5}>
 
         <Overlay />
         <Guitar />
 
       </ScrollControls>
+
       <PerspectiveCamera />
       <ambientLight intensity={1} />
        <spotLight intensity={2} position={[3, 10, 3]} color={'#bfc0d6'} castShadow/>
@@ -22,4 +22,3 @@ export const Experience = () => {
     </>
   )
 }
-/* enableZoom={false} enableRotate={false}/> */

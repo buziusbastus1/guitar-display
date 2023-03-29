@@ -1,0 +1,110 @@
+.pres {
+  margin-top: 1px;
+  position: absolute;
+  top: 3%;
+  right: 1%;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+.pres .toggle {
+  background-color: #656565;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 50%;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 3%;
+}
+
+.menu {
+  background-color: rgba(48, 50, 50, 0.9647058824);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.back {
+  display: inline-block;
+  position: relative;
+  padding: 2vh 7vh;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 4vh auto;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.var {
+  font-size: 24px;
+}
+
+.colorbut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 5vh auto 4vh;
+}
+.colorbut button {
+  width: 45%;
+  padding: 2vh;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .pres {
+    width: 55%;
+    right: 2%;
+  }
+  .var {
+    font-size: 14px;
+  }
+  .colorbut button {
+    font-size: 14px;
+  }
+  .back {
+    font-size: 14px;
+  }
+}
+@media (min-width: 768px) {
+  .pres {
+    width: 40%;
+    right: 2%;
+  }
+  .var {
+    font-size: 22px;
+  }
+  .colorbut button {
+    font-size: 22px;
+  }
+  .back {
+    font-size: 22px;
+  }
+}
+@media (min-width: 1024px) {
+  .pres {
+    width: 35%;
+    right: 1%;
+  }
+  .var {
+    font-size: 26px;
+  }
+  .colorbut button {
+    font-size: 26px;
+  }
+  .back {
+    font-size: 26px;
+  }
+}
+.colorbut button:nth-child(1),
+.colorbut button:nth-child(2) {
+  background-color: #000000;
+}/*# sourceMappingURL=Presentation.css.map */

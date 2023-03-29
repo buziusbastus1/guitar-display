@@ -16,6 +16,14 @@ section {
 
 .mid {
   text-align: center;
+  margin-top: -2vh;
+  white-space: nowrap;
+  width: 100vh;
+}
+
+.midl {
+  text-align: center;
+  margin-top: 11vh;
 }
 
 .down {
@@ -26,11 +34,15 @@ section {
 
 .card {
   width: 50%;
-  background-color: #2f3636;
-  border-radius: 10%;
+  background-color: #303232;
+  border-radius: 20px;
   border-style: solid;
-  border-color: #2f3636;
+  border-color: #303232;
   border-width: thick;
+  list-style: none;
+  margin-top: 1rem;
+  line-height: 1.5;
+  height: auto;
 }
 
 .section-heading {
@@ -73,19 +85,10 @@ section {
   width: 10%;
 }
 
-/* Styles for the "flex" class */
-.flex {
+.section-flex {
   display: flex;
-}
-
-/* Styles for the "items-center" class */
-.items-center {
   align-items: center;
   text-align: center;
-}
-
-/* Styles for the "justify-center" class */
-.justify-center {
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -94,14 +97,113 @@ section {
   h1 {
     font-size: 2.4em;
   }
+  p {
+    font-size: 0.8em;
+  }
+  .custbut {
+    font-size: 1em;
+  }
 }
 @media (min-width: 768px) {
   h1 {
     font-size: 3em;
+  }
+  p {
+    font-size: 1em;
+  }
+  .custbut {
+    font-size: 1.2em;
   }
 }
 @media (min-width: 1024px) {
   h1 {
     font-size: 3.6em;
   }
+  p {
+    font-size: 1.2em;
+  }
+  .custbut {
+    font-size: 1.4em;
+  }
+}
+.custbut {
+  display: block;
+  margin: 18vh auto;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(13, 13, 13, 0.8549019608);
+  color: #fff;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  border: 3px solid #fff;
+  position: relative;
+  border: none;
+}
+.custbut::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid #fff;
+  border-radius: 7px;
+  transition: all 0.3s ease-in-out;
+}
+.custbut:hover {
+  cursor: pointer;
+}
+.custbut:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sectlast {
+  height: 100vh;
+}
+
+.footer {
+  padding: 1px 0;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 18vh;
+}
+.footer .col {
+  width: 45%;
+  text-align: center;
+}
+.footer .col h3 {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.footer .col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer .col ul li {
+  margin-bottom: 10px;
+}
+.footer .col ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+}
+.footer .col ul li a:hover:after {
+  width: 100%;
+}
+.footer .col ul li a:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s ease-in-out;
 }/*# sourceMappingURL=Section.css.map */

@@ -65,7 +65,7 @@ export const Overlay = () => {
 <footer className="footer">
 
       <div className="col">
-        <h3>Links</h3>
+        <h3>Links:</h3>
         <ul>
           <li><a target="_blank" href="https://github.com/buziusbastus1" rel="noreferrer">Github</a></li>
           <li><a target="_blank" href="https://www.linkedin.com/in/jakub-otreba337/" rel="noreferrer">Linkedin</a></li>
