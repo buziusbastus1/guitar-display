@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useGLTF, OrbitControls, Bounds, Environment } from '@react-three/drei'
 import { SelectToZoom } from './SelectToZoom'
-// import PresContent from './PresContent'
-
 import './Presentation.scss'
 
 function Model ({ woodColor, ...props }) {

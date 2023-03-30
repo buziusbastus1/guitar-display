@@ -13,6 +13,7 @@ export default defineConfig({
         manualChunks: {
           vendor: [
             '@react-three/fiber'
+            // '@react-three/drei'
           ]
         }
       }
