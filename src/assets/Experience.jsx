@@ -17,7 +17,7 @@ export const Experience = () => {
       <PerspectiveCamera />
       <ambientLight intensity={1} />
        <spotLight intensity={2} position={[3, 10, 3]} color={'#bfc0d6'} castShadow/>
-       <spotLight intensity={1} position={[-1, -2, -10]} angle={0.9} />
+       <spotLight intensity={1} position={[-1, -2, -10]} color={'#f0bdbd'} angle={0.9} />
       <Environment preset="night" />
     </>
   )
