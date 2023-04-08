@@ -59,7 +59,7 @@ export function Guitar (props) {
       camera.position,
       {
         ease: 'SlowMo',
-        x: -0.2,
+        x: 0.2,
         y: 6 + scroll.offset,
         z: 0
         // delay: scrollOffset * 2
@@ -69,7 +69,7 @@ export function Guitar (props) {
       camera.position,
       {
         ease: 'SlowMo',
-        fov: 30,
+        // fov: 30,
         x: -1,
         y: 7,
         z: -1.5
@@ -107,8 +107,7 @@ export function Guitar (props) {
         camera.position,
         {
           ease: 'SlowMo',
-
-          fov: 40,
+          // fov: 40,
           x: -0.5,
           y: 6.5,
           z: -1.1
