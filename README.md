@@ -41,6 +41,6 @@ Start the server
 
 
 ## Demo
+[guitar-display.vercel.app](https://guitar-display.vercel.app/)
 
-guitar-display.vercel.app/
 
