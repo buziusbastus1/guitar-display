@@ -1,6 +1,6 @@
 # Guitar Display
 
-A brief description of what this project does and who it's for
+This is a React app built with ViteJS. The app displays a 3D glb model created in Blender and uses ScrollControls and GSAP timeline to animate it. It also includes a subpage route where you can interact with the same model.
 
 
 ## Tech Stack
@@ -11,23 +11,14 @@ A brief description of what this project does and who it's for
 - react": ^18.2.0
 - react-dom": ^18.2.0
 - react-router-dom": ^6.9.0
-- sass": ^1.58.
-
-## Installation
-
-Install my-project with npm
-
-```bash
-  npm install my-project
-  cd my-project
-```
+- sass": ^1.58
     
 ## Run Locally
 
 Clone the project
 
 ```bash
-
+git clone https://github.com/buziusbastus1/guitar-display
 ```
 
 Go to the project directory
