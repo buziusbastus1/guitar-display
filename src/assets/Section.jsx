@@ -58,10 +58,39 @@ export const Overlay = () => {
     navigate('/presentation')
   }
   const SectionLast = ({ opacity }) => {
+    const [animate, setAnimate] = useState(false)
+
+    const handleHover = () => {
+      setAnimate(true)
+    }
+
+    const resetHover = () => {
+      setAnimate(false)
+    }
+
+    const animationStyles = animate
+      ? {
+          backgroundImage: 'linear-gradient(to right, crimson, #000)',
+          backgroundSize: '200% 100%',
+          color: 'transparent',
+          WebkitBackgroundClip: 'text',
+          backgroundClip: 'text'
+        }
+      : {}
     return (
     <div style={{ opacity }}className='sectlast'>
-      <h1 className="midl">Crimson Caster</h1>
-       <button className='custbut' onClick={handleClick}>Preview Guitar</button>
+      {/* <h1 className="midl"></h1> */}
+     {/* <h1 className="midl"><span className="text">C</span>rim<span className="text">s</span>on C<span className="text">a</span>st<span className="text">e</span>r</h1> */}
+<h1 className="midl" style={animationStyles}>Crimson Caster</h1>
+       <button
+      className='custbut'
+      onClick={handleClick}
+      onMouseEnter={handleHover}
+      onMouseLeave={resetHover}
+    >
+      Preview Guitar
+      </button>
+
 <footer className="footer">
 
       <div className="col">

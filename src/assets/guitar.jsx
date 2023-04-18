@@ -14,6 +14,7 @@ export function Guitar (props) {
   const ref = useRef()
   const pickupMesh1 = useRef()
   const pickupMesh2 = useRef()
+  const pickupMesh3 = useRef()
 
   // camera.position.set(0, 0, 5)
 
@@ -114,14 +115,20 @@ export function Guitar (props) {
           // duration: 2
         }, '<'
       )
-    // tl.current.pause(1.5)
+      .to(
+        pickupMesh3.current.material, // pickup
+        {
+          color: 'red'
+        }, '<'
+      )
+
     tl.current.to(
       ref.current.position, {
 
         ease: 'SlowMo',
         x: 0.4,
-        y: 3,
-        z: 1.5
+        y: 3.2,
+        z: 1.4
         // duration: 1
       }
     )
@@ -291,7 +298,14 @@ export function Guitar (props) {
         geometry={nodes.pickup.geometry}
         material={materials.pickup}
         position={[-1.17, 0.08, 0.02]}
-      />
+        ref={pickupMesh3} // pickup
+        >
+            {/* <meshStandardMaterial
+  color={woodColor}
+  map={materials.cialoczer.map}
+   /> */}
+        </mesh>
+
       <mesh
         castShadow
         receiveShadow

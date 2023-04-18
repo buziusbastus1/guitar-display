@@ -7,7 +7,7 @@ import { Overlay } from './Section'
 export const Experience = () => {
   return (
     <>
-       <ScrollControls pages={9} damping={0.1} distance={4} maxSpeed={0.5}>
+       <ScrollControls pages={9} damping={0.1} distance={2.5} maxSpeed={0.5}>
 
         <Overlay />
         <Guitar />
