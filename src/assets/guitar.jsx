@@ -1,5 +1,5 @@
 
-import React, { useRef, useLayoutEffect } from 'react'
+import React, { useRef, useLayoutEffect, useState } from 'react'
 import { useGLTF, useScroll } from '@react-three/drei'
 import gsap from 'gsap'
 import { useFrame, useThree } from '@react-three/fiber'
@@ -15,7 +15,7 @@ export function Guitar (props) {
   const pickupMesh1 = useRef()
   const pickupMesh2 = useRef()
   const pickupMesh3 = useRef()
-
+  // const PICKUP_COLOR = 'red'
   // camera.position.set(0, 0, 5)
 
   useFrame(() => {
@@ -116,9 +116,14 @@ export function Guitar (props) {
         }, '<'
       )
       .to(
-        pickupMesh3.current.material, // pickup
+        pickupMesh3.current.material.color, // pickup
         {
-          color: 'red'
+          r: 1,
+          g: 1,
+          b: 0.1
+          // r: 1,
+          // g: 1,
+          // b: 1
         }, '<'
       )
 
@@ -298,11 +303,16 @@ export function Guitar (props) {
         geometry={nodes.pickup.geometry}
         material={materials.pickup}
         position={[-1.17, 0.08, 0.02]}
-        ref={pickupMesh3} // pickup
+         // pickup
+ ref={pickupMesh3}
         >
             {/* <meshStandardMaterial
-  color={woodColor}
-  map={materials.cialoczer.map}
+  // emissive={'red'}
+  // emissiveIntensity={10.5}
+  // color={'white'}
+  ref={pickupMesh3}
+  // color="#ff0000"
+   opacity={0.9}
    /> */}
         </mesh>
 
