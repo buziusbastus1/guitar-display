@@ -1,5 +1,5 @@
 
-import React, { useRef, useLayoutEffect, useState } from 'react'
+import React, { useRef, useLayoutEffect } from 'react'
 import { useGLTF, useScroll } from '@react-three/drei'
 import gsap from 'gsap'
 import { useFrame, useThree } from '@react-three/fiber'
@@ -14,10 +14,7 @@ export function Guitar (props) {
   const ref = useRef()
   const pickupMesh1 = useRef()
   const pickupMesh2 = useRef()
-  const pickupMesh3 = useRef()
-  // const PICKUP_COLOR = 'red'
   // camera.position.set(0, 0, 5)
-
   useFrame(() => {
     tl.current.seek((scroll.offset) * tl.current.duration())
     // console.log(ref.current.position)
@@ -36,7 +33,7 @@ export function Guitar (props) {
     tl.current.to(
       ref.current.position, {
 
-        ease: 'SlowMo',
+        ease: 'Power2.easeOut',
         x: 0.5,
         y: 4,
         z: 0
@@ -44,13 +41,13 @@ export function Guitar (props) {
     )
       .to(ref.current.rotation, {
       // duration: 2,
-        ease: 'SlowMo',
+        ease: 'Power2.easeOut',
         y: Math.PI / -2
       }, 0 // Start w tym samym momencie
       )
       .to(
         ref.current.scale, {
-          ease: 'SlowMo',
+          ease: 'Power2.easeOut',
           x: 2.3,
           y: 2.3,
           z: 2.3
@@ -113,17 +110,6 @@ export function Guitar (props) {
           y: 6.5,
           z: -1.1
           // duration: 2
-        }, '<'
-      )
-      .to(
-        pickupMesh3.current.material.color, // pickup
-        {
-          r: 1,
-          g: 1,
-          b: 0.1
-          // r: 1,
-          // g: 1,
-          // b: 1
         }, '<'
       )
 
@@ -304,15 +290,16 @@ export function Guitar (props) {
         material={materials.pickup}
         position={[-1.17, 0.08, 0.02]}
          // pickup
- ref={pickupMesh3}
         >
             {/* <meshStandardMaterial
   // emissive={'red'}
   // emissiveIntensity={10.5}
   // color={'white'}
-  ref={pickupMesh3}
+  // ref={pickupMesh3}
   // color="#ff0000"
-   opacity={0.9}
+   map={ materials.pickup.map}
+   color={ materials.pickup.color}
+  //  map={ materials.map}
    /> */}
         </mesh>
 
