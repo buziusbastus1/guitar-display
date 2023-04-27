@@ -1,6 +1,6 @@
 # Guitar Display
 
-This is a React app built with ViteJS. The app displays my 3D glb model created in Blender(/public/models/) and uses ScrollControls and GSAP timeline to animate it. It also includes a subpage route where you can interact with the same model.
+This is a React app built with ViteJS. The app displays my 3D glb model created in Blender whitch uses ScrollControls and GSAP timeline to animate model and user interface. It also includes a subpage route where you can interact with the same model. You can move around with OrbitControls, click on different parts with camera foucus with Bounds, display mesh name on hover near the cursor and change mesh material color.
 
 
 ## Tech Stack
