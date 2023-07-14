@@ -27,7 +27,7 @@ function MyPresentation () {
     setWoodColor('#ffffff')
   }
   const handleColor2 = () => {
-    setWoodColor('#bababa')
+    setWoodColor('#dbd9d9')
   }
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [isHidden, setIsHidden] = useState(false)

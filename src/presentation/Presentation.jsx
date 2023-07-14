@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useGLTF, OrbitControls, Bounds, Environment } from '@react-three/drei'
+import { useGLTF, OrbitControls, Bounds } from '@react-three/drei'
 import { SelectToZoom } from './SelectToZoom'
 import './Presentation.scss'
 
@@ -233,14 +233,13 @@ export const CanvasContent = ({ woodColor }) => {
     <>
       <ambientLight intensity={0.5} />
       <hemisphereLight color="#5c4f2d" position={[0, 0, 13]} intensity={1} />
-       <spotLight intensity={1} position={[-2, 1, 2]} />
+       <spotLight intensity={1.5} position={[-2, 1, 2]} />
       <Bounds fit margin={1.5} damping={5}>
         <SelectToZoom>
           <Model woodColor={woodColor} />
         </SelectToZoom>
       </Bounds>
       <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2.5} maxDistance={2.5} minDistance={0.3}/>
-      <Environment preset="city" />
       </>
   )
 }

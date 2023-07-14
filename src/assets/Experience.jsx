@@ -1,6 +1,6 @@
 
 import { React } from 'react'
-import { ScrollControls, PerspectiveCamera, Environment } from '@react-three/drei'
+import { ScrollControls, PerspectiveCamera } from '@react-three/drei'
 import { Guitar } from './Guitar'
 import { Overlay } from './Section'
 
@@ -15,10 +15,9 @@ export const Experience = () => {
       </ScrollControls>
 
       <PerspectiveCamera />
-      <ambientLight intensity={1} />
+      <ambientLight intensity={1.2} />
        <spotLight intensity={2} position={[3, 10, 3]} color={'#bfc0d6'} castShadow/>
        <spotLight intensity={1} position={[-1, -2, -10]} color={'#f0bdbd'} angle={0.9} />
-      <Environment preset="night" />
     </>
   )
 }
