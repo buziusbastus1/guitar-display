@@ -128,8 +128,8 @@ function Model ({ woodColor, ...props }) {
         receiveShadow
         geometry={nodes.sruby.geometry}
         material={materials.sruby}
-           material-roughness={0.4}
-           material-metalness={1.4}
+        material-metalness={1.4}
+        material-roughness={0.4}
         onClick={(e) => e.stopPropagation()}
 
       />
@@ -231,9 +231,11 @@ useGLTF.preload('./models/guitarp.glb')
 export const CanvasContent = ({ woodColor }) => {
   return (
     <>
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={0.8} />
       <hemisphereLight color="#5c4f2d" position={[0, 0, 13]} intensity={1} />
        <spotLight intensity={1.5} position={[-2, 1, 2]} />
+       <spotLight intensity={1.5} position={[-2.5, -1, 3]} />
+       <spotLight intensity={1.5} position={[60, 5, 10]} angle={0.9} />
       <Bounds fit margin={1.5} damping={5}>
         <SelectToZoom>
           <Model woodColor={woodColor} />

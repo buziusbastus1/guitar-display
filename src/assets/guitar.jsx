@@ -149,7 +149,7 @@ export function Guitar (props) {
     tl.current.to(
       ref.current.position, {
 
-        ease: 'SlowMo',
+        ease: 'power4',
         x: 0,
         y: 0,
         z: 0
@@ -280,8 +280,8 @@ export function Guitar (props) {
         receiveShadow
         geometry={nodes.sruby.geometry}
         material={materials.sruby}
-         material-metalness={2}
-         material-roughness={0.4}
+        material-metalness={2}
+        material-roughness={0.4}
       />
       <mesh
         castShadow
