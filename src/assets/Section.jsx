@@ -79,7 +79,6 @@ export const Overlay = () => {
       : {}
     return (
     <div style={{ opacity }}className='sectlast'>
-      {/* <h1 className="midl"></h1> */}
      {/* <h1 className="midl"><span className="text">C</span>rim<span className="text">s</span>on C<span className="text">a</span>st<span className="text">e</span>r</h1> */}
 <h1 className="midl" style={animationStyles}>Crimson Caster</h1>
        <button
